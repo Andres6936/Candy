@@ -35,6 +35,7 @@ namespace TestCandy
         [Test]
         public void SelectEventAttributesTest()
         {
+            // ReSharper disable StringLiteralTypo
             const string xpath =
                 "//* [@onkeypress or @onkeydown or @onkeyup or @onclick or @ondblclick or @onmousedown or " +
                 "@onmouseup or @onmouseover or @onmousemove or @onmouseout or @onmouseenter or " +
