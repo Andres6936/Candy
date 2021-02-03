@@ -211,7 +211,7 @@ namespace Candy
 
         internal static readonly string HtmlExceptionClassExists = "Class name already exists";
 
-        internal static readonly Dictionary<string, string[]> HtmlResetters = new Dictionary<string, string[]>()
+        internal static readonly Dictionary<string, string[]> HtmlResetters = new()
         {
             {"li", new[] {"ul", "ol"}},
             {"tr", new[] {"table"}},
