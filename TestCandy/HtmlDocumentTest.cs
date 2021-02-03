@@ -21,7 +21,8 @@ namespace TestCandy
         [OneTimeSetUp]
         public void Setup()
         {
-            _contentDirectory = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Files");
+            // Suppress the nullable file with ! to end of the sentence
+            _contentDirectory = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!, "Files");
         }
 
         private HtmlDocument GetMshomeDocument()
