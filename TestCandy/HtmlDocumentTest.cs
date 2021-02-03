@@ -6,6 +6,7 @@ using System.Threading;
 using System.Diagnostics;
 using System.Globalization;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 using Candy;
@@ -25,9 +26,11 @@ namespace TestCandy
             _contentDirectory = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!, "Files");
         }
 
+        [SuppressMessage("ReSharper", "IdentifierTypo")]
         private HtmlDocument GetMshomeDocument()
         {
             var doc = new HtmlDocument();
+            // ReSharper disable once StringLiteralTypo
             doc.Load(Path.Combine(_contentDirectory , "mshome.htm"));
             return doc;
         }
