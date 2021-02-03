@@ -35,13 +35,31 @@ namespace TestCandy
         [Test]
         public void SelectEventAttributesTest()
         {
-	        String xpath = "//* [@onkeypress or @onkeydown or @onkeyup or @onclick or @ondblclick or @onmousedown or @onmouseup or @onmouseover or @onmousemove or @onmouseout or @onmouseenter or @onmouseleave or @onmousewheel or @oncontextmenu or @onabort or @onbeforeunload or @onerror or @onload or @onmove or @onresize or @onscroll or @onstop or @onunload or @onreset or @onsubmit or @onblur or @onchange or @onfocus or @onfocusin or @onfocusout or @oninput or @onbeforeactivate or @onactivate or @onbefordeactivate or @ondeactivate or @onbounce or @onfinish or @onstart or @onbeforecopy or @onbeforecut or @onbeforeeditfocus or @onbeforepaste or @onbeforeupdate or @oncopy or @oncut or @ondrag or @ondragdrop or @ondragend or @ondragenter or @ondragleave or @ondragover or @ondragstart or @ondrop or @onlosecapture or @onpaste or @onselect or @onselectstart or @oncontrolselect or @onmovestart or @onmoveend or @onafterupdate or @oncellchange or @ondataavailable or @ondatasetchanged or @ondatasetcomplete or @onerrorupdate or @onrowenter or @onrowexit or @onrowsdelete or @onrowsinserted or @onafterprint or @onbeforeprint or @onfilterchange or @onhelp or @onpropertychange or @onreadystatechange]";
-	        var doc = new Candy.HtmlDocument();
+            const string xpath =
+                "//* [@onkeypress or @onkeydown or @onkeyup or @onclick or @ondblclick or @onmousedown or " +
+                "@onmouseup or @onmouseover or @onmousemove or @onmouseout or @onmouseenter or " +
+                "@onmouseleave or @onmousewheel or @oncontextmenu or @onabort or @onbeforeunload or " +
+                "@onerror or @onload or @onmove or @onresize or @onscroll or @onstop or @onunload or " +
+                "@onreset or @onsubmit or @onblur or @onchange or @onfocus or @onfocusin or @onfocusout or " +
+                "@oninput or @onbeforeactivate or @onactivate or @onbefordeactivate or @ondeactivate or " +
+                "@onbounce or @onfinish or @onstart or @onbeforecopy or @onbeforecut or " +
+                "@onbeforeeditfocus or @onbeforepaste or @onbeforeupdate or @oncopy or @oncut or " +
+                "@ondrag or @ondragdrop or @ondragend or @ondragenter or @ondragleave or @ondragover or " +
+                "@ondragstart or @ondrop or @onlosecapture or @onpaste or @onselect or @onselectstart or " +
+                "@oncontrolselect or @onmovestart or @onmoveend or @onafterupdate or @oncellchange or " +
+                "@ondataavailable or @ondatasetchanged or @ondatasetcomplete or @onerrorupdate or " +
+                "@onrowenter or @onrowexit or @onrowsdelete or @onrowsinserted or @onafterprint or " +
+                "@onbeforeprint or @onfilterchange or @onhelp or @onpropertychange or @onreadystatechange]";
+            
+	        var doc = new HtmlDocument();
 	        doc.LoadHtml(@"<html><body><div id='foo' onclick='bar'><span> some</span> text</div></body></html>");
-	        for (int i = 0; i < 100000; i++)
-	        {
-		        doc.DocumentNode.SelectNodes(xpath).ToList();
-	        }
+            
+            List<HtmlNode> nodesSelected = doc.DocumentNode.SelectNodes(xpath).ToList();
+            Assert.That(nodesSelected.Count, Is.EqualTo(1));
+            
+            // Get the unique element in the list.
+            HtmlNode onlyNode = nodesSelected[0];
+            Assert.That(onlyNode.Id, Is.EqualTo("foo"));
         }
 
 
