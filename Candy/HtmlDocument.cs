@@ -228,17 +228,10 @@ namespace Candy
         /// </summary>
         public HtmlDocument()
         {
-            if (DefaultBuilder != null)
-            {
-                DefaultBuilder(this);
-            }
+            DefaultBuilder?.Invoke(this);
 
             _documentnode = CreateNode(HtmlNodeType.Document, 0);
-#if SILVERLIGHT || METRO || NETSTANDARD1_3 || NETSTANDARD1_6
             OptionDefaultStreamEncoding = Encoding.UTF8;
-#else
-            OptionDefaultStreamEncoding = Encoding.Default;
-#endif
         }
 
         #endregion
