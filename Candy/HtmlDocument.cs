@@ -8,7 +8,12 @@ using System.Xml;
 namespace Candy
 {
     /// <summary>
-    /// Represents a complete HTML document.
+    /// HtmlDocument provides a managed wrapper around Internet Explorer's document object, also known as the HTML
+    /// Document Object Model (DOM). You obtain an instance of HtmlDocument through the Document property of the
+    /// WebBrowser control. <br/><br/>
+    /// 
+    /// HTML tags inside of an HTML document can be nested inside one another. HtmlDocument thus represents a document
+    /// tree, whose children are instances of the HtmlElement class.
     /// </summary>
     public partial class HtmlDocument
     {
