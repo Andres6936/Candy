@@ -17,43 +17,6 @@ namespace Candy
     /// </summary>
     public partial class HtmlDocument
     {
-        #region Manager
-
-        internal static bool _disableBehaviorTagP = true;
-
-        /// <summary>True to disable, false to enable the behavior tag p.</summary>
-        public static bool DisableBehaviorTagP
-        {
-            get => _disableBehaviorTagP;
-            set
-            {
-                if (value)
-                {
-                    if (HtmlNode.ElementsFlags.ContainsKey("p"))
-                    {
-                        HtmlNode.ElementsFlags.Remove("p");
-                    }
-                }
-                else
-                {
-                    if (!HtmlNode.ElementsFlags.ContainsKey("p"))
-                    {
-                        HtmlNode.ElementsFlags.Add("p", HtmlElementFlag.Empty | HtmlElementFlag.Closed);
-                    }
-                }
-
-                _disableBehaviorTagP = value;
-            }
-        }
-
-        /// <summary>Default builder to use in the HtmlDocument constructor</summary>
-        public static Action<HtmlDocument> DefaultBuilder { get; set; }
-
-        /// <summary>Action to execute before the Parse is executed</summary>
-        public Action<HtmlDocument> ParseExecuting { get; set; }
-
-        #endregion
-
         #region Fields
 
         /// <summary>
@@ -200,7 +163,44 @@ namespace Candy
 
 
 		#endregion
+        
+        #region Manager
 
+        private static bool _disableBehaviorTagP = true;
+
+        /// <summary>True to disable, false to enable the behavior tag p.</summary>
+        public static bool DisableBehaviorTagP
+        {
+            get => _disableBehaviorTagP;
+            set
+            {
+                if (value)
+                {
+                    if (HtmlNode.ElementsFlags.ContainsKey("p"))
+                    {
+                        HtmlNode.ElementsFlags.Remove("p");
+                    }
+                }
+                else
+                {
+                    if (!HtmlNode.ElementsFlags.ContainsKey("p"))
+                    {
+                        HtmlNode.ElementsFlags.Add("p", HtmlElementFlag.Empty | HtmlElementFlag.Closed);
+                    }
+                }
+
+                _disableBehaviorTagP = value;
+            }
+        }
+
+        /// <summary>Default builder to use in the HtmlDocument constructor</summary>
+        private static Action<HtmlDocument> DefaultBuilder { get; set; }
+
+        /// <summary>Action to execute before the Parse is executed</summary>
+        private Action<HtmlDocument> ParseExecuting { get; set; }
+
+        #endregion
+        
 		#region Static Members
 
 		internal static readonly string HtmlExceptionRefNotChild = "Reference node must be a child of this node";
