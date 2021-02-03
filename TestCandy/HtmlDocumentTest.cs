@@ -65,6 +65,15 @@ namespace TestCandy
             // Get the unique element in the list.
             HtmlNode onlyNode = nodesSelected[0];
             Assert.That(onlyNode.Id, Is.EqualTo("foo"));
+            Assert.That(onlyNode.Name, Is.EqualTo("div"));
+            Assert.That(onlyNode.Line, Is.EqualTo(1));
+            Assert.That(onlyNode.LinePosition, Is.EqualTo(12));
+            Assert.That(onlyNode.Attributes.Count, Is.EqualTo(2));
+            Assert.That(onlyNode.XPath, Is.EqualTo("/html[1]/body[1]/div[1]"));
+            Assert.That(onlyNode.InnerText, Is.EqualTo(" some text"));
+            Assert.That(onlyNode.InnerHtml, Is.EqualTo("<span> some</span> text"));
+            Assert.That(onlyNode.OuterHtml, Is.EqualTo("<div id='foo' onclick='bar'><span> some</span> text</div>"));
+            Assert.That(onlyNode.OuterLength, Is.EqualTo(57));
         }
 
 
